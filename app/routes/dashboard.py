@@ -6,7 +6,7 @@ from app.db.database import get_db
 from app.core.dependencies import get_current_user
 from app.models.task import Task
 from app.models.user import User
-from app.models.project_member import ProjectMember   # ✅ IMPORTANT
+from app.models.project_member import ProjectMember   # IMPORTANT
 
 router = APIRouter(prefix="/dashboard", tags=["Dashboard"])
 
@@ -16,7 +16,7 @@ def get_dashboard(
     db: Session = Depends(get_db),
     current_user: User = Depends(get_current_user)
 ):
-    # 🔥 FIX: Get ALL tasks from user's projects (NOT just assigned)
+    #  FIX: Get ALL tasks from user's projects (NOT just assigned)
     tasks = (
         db.query(Task)
         .join(ProjectMember, ProjectMember.project_id == Task.project_id)
@@ -28,14 +28,14 @@ def get_dashboard(
     pending = len([t for t in tasks if t.status == "pending"])
     completed = len([t for t in tasks if t.status == "completed"])
 
-    # 🔥 Overdue
+    #  Overdue
     now = datetime.utcnow()
     overdue = len([
         t for t in tasks
         if t.due_date and t.due_date < now and t.status != "completed"
     ])
 
-    # 🔥 Priority stats (safe check)
+    #  Priority stats (safe check)
     high_priority = len([t for t in tasks if getattr(t, "priority", None) == "high"])
     medium_priority = len([t for t in tasks if getattr(t, "priority", None) == "medium"])
     low_priority = len([t for t in tasks if getattr(t, "priority", None) == "low"])

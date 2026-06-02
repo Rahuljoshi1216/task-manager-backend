@@ -19,7 +19,7 @@ from app.utils.permission import is_admin, is_project_member
 router = APIRouter(prefix="/projects", tags=["Projects"])
 
 
-# 🔹 CREATE PROJECT
+#  CREATE PROJECT
 @router.post("/")
 def create_project(
     project: ProjectCreate,
@@ -29,7 +29,7 @@ def create_project(
     return create_project_service(db, project, current_user.id)
 
 
-# 🔹 GET USER PROJECTS
+#  GET USER PROJECTS
 @router.get("/")
 def get_projects(
     db: Session = Depends(get_db),
@@ -38,7 +38,7 @@ def get_projects(
     return get_projects_service(db, current_user.id)
 
 
-# 🔥 NEW: GET SINGLE PROJECT
+#  NEW: GET SINGLE PROJECT
 @router.get("/{project_id}")
 def get_project(
     project_id: int,
@@ -56,7 +56,7 @@ def get_project(
     return project
 
 
-# 🔥 NEW: GET PROJECT MEMBERS (IMPORTANT FOR FRONTEND)
+#  NEW: GET PROJECT MEMBERS (IMPORTANT FOR FRONTEND)
 @router.get("/{project_id}/members")
 def get_project_members(
     project_id: int,
@@ -82,7 +82,7 @@ def get_project_members(
     ]
 
 
-# 🔥 ADD MEMBER (ADMIN ONLY)
+#  ADD MEMBER (ADMIN ONLY)
 @router.post("/{project_id}/add-member")
 def add_member(
     project_id: int,
@@ -95,7 +95,7 @@ def add_member(
     if not project:
         raise HTTPException(status_code=404, detail="Project not found")
 
-    # 🔐 Only admin can add members
+    #  Only admin can add members
     if not is_admin(db, project_id, current_user.id):
         raise HTTPException(status_code=403, detail="Not allowed")
 
