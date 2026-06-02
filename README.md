@@ -156,18 +156,6 @@ ACCESS_TOKEN_EXPIRE_MINUTES=30
 
 ---
 
-## 🚀 Deployment
-
-The application is configured for deployment on Railway.
-
-### Backend
-
-```bash
-web: uvicorn app.main:app --host 0.0.0.0 --port $PORT
-```
-
----
-
 ## 🎯 Future Improvements
 
 * Email Notifications
