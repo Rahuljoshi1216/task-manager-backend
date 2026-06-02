@@ -45,13 +45,6 @@ A full-stack Team Task Manager application built with **FastAPI**, **React**, **
 
 ## 🛠️ Tech Stack
 
-### Frontend
-
-* React.js
-* React Router DOM
-* Axios
-* CSS3
-
 ### Backend
 
 * FastAPI
@@ -64,9 +57,6 @@ A full-stack Team Task Manager application built with **FastAPI**, **React**, **
 * SQLite (Development)
 * PostgreSQL (Production Ready)
 
-### Deployment
-
-* Railway
 
 ---
 
